@@ -13,7 +13,15 @@ const checkMinMax = computed(() =>{
     }
 })
 
+const props = defineProps<{
+    quantity?: number
+}>()
+
 let number: Ref<number> = ref(1)
+
+if(props.quantity != null){
+    number.value = props.quantity
+}
 
 const emit = defineEmits(['on-change'])
 

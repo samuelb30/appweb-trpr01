@@ -17,6 +17,9 @@ function onDuplicate(productId: String){
 function onExpand(productId: String){
     emit('on-expand', productId)
 }
+function onEdit(product: Product){
+    emit('on-edit', product)
+}
 
 </script>
 
@@ -26,10 +29,10 @@ function onExpand(productId: String){
         <ul class="list-group list-group-flush">
             <template v-for="product in props.products" :key="product.id">
                 <template v-if="product.showDetails">
-                    <DetailedProduct :product="product" @on-delete="onDelete" @on-duplicate="onDuplicate" @on-edit="" @on-expand="onExpand"/>
+                    <DetailedProduct :product="product" @on-delete="onDelete" @on-duplicate="onDuplicate" @on-edit="onEdit" @on-expand="onExpand"/>
                 </template>
                 <template v-else>
-                    <ProductListItem :product="product" @on-delete="onDelete" @on-duplicate="onDuplicate" @on-edit="" @on-expand="onExpand"/>
+                    <ProductListItem :product="product" @on-delete="onDelete" @on-duplicate="onDuplicate" @on-edit="onEdit" @on-expand="onExpand"/>
                 </template>
             </template>
         </ul>

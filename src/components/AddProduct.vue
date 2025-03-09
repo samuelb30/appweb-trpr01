@@ -1,11 +1,16 @@
 <script setup lang="ts">
-import { type Ref, ref, computed } from 'vue'
+import { type Ref, ref, computed} from 'vue'
 import { type Product } from '../scripts/product.ts'
 import { loadImg } from '../scripts/utils'
 import {MIN,MAX} from '../components/Counter.vue'
 
 import Counter from './Counter.vue';
 
+const props = defineProps<{
+    product?: Product,
+    title: string,
+    confirmButtonName: string
+}>()
 
 const emit = defineEmits(['form-submitted'])
 
@@ -27,6 +32,20 @@ let productDescriptionError: Ref<string> = ref("")
 let imageUriError: Ref<string> = ref("")
 let quantityError: Ref<string> = ref("")
 
+function reset(){
+    name.value = ""
+    desc.value = ""
+    imageUrl.value = ""
+    quantity = 1
+    if(props.product != null){
+        name = ref(props.product.name)
+        desc = ref(props.product.description)
+        imageUrl = ref(props.product.imageUrl)
+        quantity = props.product.quantity
+}
+   
+}
+reset()
 
 
 function isBlank(value: string) {
@@ -107,15 +126,17 @@ async function onSubmit() {
             showDetails: false
         }
 
-        emit('form-submitted', [product])
+        emit('form-submitted', product)
     }
+   reset()
+    
 
 }
 </script>
 
 <template>
     <form class="card shadow rounded-4 border-2 p-5 m-0" @submit.prevent="onSubmit()" @keydown.enter.prevent novalidate>
-        <h2 class="card-title align-self-center pb-3">Créer un produit</h2>
+        <h2 class="card-title align-self-center pb-3">{{title}}</h2>
         <div class="row mb-3">
             <div class="col">
                 <label for="product-name" class="form-label">Nom du produit</label>
@@ -144,15 +165,14 @@ async function onSubmit() {
         <div class="row mb-3">
             <div class="col d-flex justify-content-between input-group">
                 <label for="product-quantity">Quantité:</label>
-                <Counter @on-change="onQuanityChange" />
+                <Counter @on-change="onQuanityChange" :quantity="props.product?.quantity"/>
             </div>
             <span class="form-error">{{ quantityError }}</span>
         </div>
 
         <div class="row">
             <div class="col">
-                <button :class="{ disabled: checkForEmptyFields }" class="btn btn-primary w-100 m-auto" type="submit">Add
-                    product</button>
+                <button :class="{ disabled: checkForEmptyFields }" class="btn btn-primary w-100 m-auto" type="submit">{{confirmButtonName}}</button>
             </div>
         </div>
     </form>
