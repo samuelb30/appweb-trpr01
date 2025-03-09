@@ -34,9 +34,7 @@ function emitProduct() {
     }
 }
 const getBadge = computed(() => {
-    if (props.product.quantity <= 0) {
-
-    } else if (props.product.quantity < 5) {
+    if (props.product.quantity < 5) {
         return "text-bg-danger"
     } else if (props.product.quantity < 10) {
         return "text-bg-warning"

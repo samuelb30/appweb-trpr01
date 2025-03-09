@@ -82,8 +82,8 @@ async function validateForm() {
         nameValid.value = false
         valid = false
         productNameError.value += "Le nom du produit ne doit pas être inférieur à 2 charactères!"
-    } else if(name.value.trim().length > 20){
-        productNameError.value += "Le nom du produit ne doit pas être supérieur à 20 charactères!"
+    } else if(name.value.trim().length > 35){
+        productNameError.value += "Le nom du produit ne doit pas être supérieur à 35 charactères!"
         nameValid.value = false
         valid = false
     } else {
@@ -123,7 +123,8 @@ async function onSubmit() {
             description: desc.value,
             imageUrl: imageUrl.value,
             quantity: quantity,
-            showDetails: false
+            showDetails: false,
+            hasBeenNotified: false
         }
 
         emit('form-submitted', product)
