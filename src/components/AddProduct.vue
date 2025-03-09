@@ -103,7 +103,8 @@ async function onSubmit() {
             name: name.value,
             description: desc.value,
             imageUrl: imageUrl.value,
-            quantity: quantity
+            quantity: quantity,
+            showDetails: false
         }
 
         emit('form-submitted', [product])
@@ -127,7 +128,7 @@ async function onSubmit() {
             <div class="col">
                 <label for="product-desc" class="form-label">Description</label>
                 <textarea style="resize: none;" v-model="desc" id="product-desc" :class="{ 'is-invalid': !descValid }"
-                    class="form-control" rows="8" cols="30"> </textarea>
+                    class="form-control" rows="6" cols="30"> </textarea>
             </div>
             <span class="form-error">{{ productDescriptionError }}</span>
         </div>
@@ -158,7 +159,10 @@ async function onSubmit() {
 </template>
 
 <style scoped>
-
+form{
+    position: sticky;
+    top: 1px;
+}
 .form-error {
     color: rgb(204, 0, 0);
 }</style>

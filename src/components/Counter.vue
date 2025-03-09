@@ -1,5 +1,5 @@
 <script lang="ts">
-    export const MIN = 1
+    export const MIN = 0
     export const MAX = 100
 </script>
 <script setup lang="ts">

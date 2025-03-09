@@ -3,5 +3,6 @@ export interface Product{
     name: string,
     description: string,
     imageUrl: string,
-    quantity: number
+    quantity: number,
+    showDetails: boolean
 }
