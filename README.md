@@ -1,5 +1,31 @@
-# Vue 3 + TypeScript + Vite
+# 🛒 Nom du Projet
 
-This template should help get you started developing with Vue 3 and TypeScript in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
+## 📌 Description du projet
+Page de gestion de produits artisanaux fait avec Vite, Vue et TypeScript. Un produit peut être ajouter, modifier, dupliqué et suprimé. La recherche d'un produit par son nom est possible.
 
-Learn more about the recommended Project Setup and IDE Support in the [Vue Docs TypeScript Guide](https://vuejs.org/guide/typescript/overview.html#project-setup).
+
+## 🤖 Utilisation de l'Intelligence Artificielle (IA)
+Décris ici comment l'IA est utilisée dans ton projet. Précise :
+- Utilisation de ChatGPT pour les Modals.
+- Utilisation de ChatGPT et DALL-E pour la création du logo.
+- Utilisation de ChatGPT pour la création d'un gabarit pour le README.md
+
+## 🔗 Liens utiles
+- **GitHub Repository** : https://github.com/samuelb30/appweb-trpr01
+- **Site déployé** : TODO
+
+## 🚀 Installation & Utilisation
+### 📦 Prérequis
+- Node.js & npm / yarn
+- Autres dépendances nécessaires dans package.json
+
+### 🛠️ Installation
+```sh
+git clone https://github.com/samuelb30/appweb-trpr01
+cd appweb-trpr01
+npm install
+npm run build
+#ou
+npm run dev
+#ou
+npm run preview
