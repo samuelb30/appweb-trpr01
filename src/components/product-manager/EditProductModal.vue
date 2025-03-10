@@ -1,8 +1,7 @@
 <script setup lang="ts">
 import { watch, ref, onMounted } from 'vue';
-import { Modal } from 'bootstrap/dist/js/bootstrap.bundle.min.js';
-import cloneDeep from 'lodash'
-import type { Product } from '../scripts/product';
+import { Modal } from 'bootstrap';
+import type { Product } from '../../scripts/product';
 import AddProduct from './AddProduct.vue';
 
 const props = defineProps<{

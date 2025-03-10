@@ -1,10 +1,10 @@
 <script setup lang="ts">
 import { type Ref, ref, computed} from 'vue'
-import { type Product } from '../scripts/product.ts'
-import { loadImg } from '../scripts/utils'
-import {MIN,MAX} from '../components/Counter.vue'
+import { type Product } from '../../scripts/product.ts'
+import { loadImg } from '../../scripts/utils'
+import {MIN,MAX} from '../utils/Counter.vue'
 
-import Counter from './Counter.vue';
+import Counter from '../utils/Counter.vue';
 
 const props = defineProps<{
     product?: Product,

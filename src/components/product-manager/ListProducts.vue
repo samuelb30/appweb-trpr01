@@ -1,9 +1,10 @@
 <script setup lang="ts">
-import type { Product } from '../scripts/product';
+
+import type { Product } from '../../scripts/product';
 import DetailedProduct from './DetailedProduct.vue';
 import ProductListItem from './ProductListItem.vue';
 
-import {ref,type Ref,watch} from 'vue'
+import {ref,type Ref,watch,onMounted} from 'vue'
 
 const props = defineProps<{
     products: Product[]
@@ -43,6 +44,39 @@ function search(){
     }
 }
 
+function convertProductsToCSV(products: Product[]): string {
+    if (products.length === 0) {
+        return "";
+    }
+
+    const headers = "id,name,description,URI de l'image,quantity";
+
+    const rows = products.map(product =>
+        `"${product.id}","${product.name}","${product.description}","${product.imageUrl}","${product.quantity}"`
+    );
+
+    return "\uFEFF" + [headers, ...rows].join("\n");
+}
+
+onMounted(() => {
+    const exportButton = document.getElementById("exportCsv");
+    if (exportButton) {
+        exportButton.addEventListener("click", downloadCSV);
+    }
+})
+
+function downloadCSV() {
+    const csv = convertProductsToCSV(currentProducts.value);
+
+    const blob = new Blob([csv], { type: "text/csv;charset=utf-8;" });
+    const fileHandle = document.createElement("a");
+    fileHandle.href = URL.createObjectURL(blob);
+    fileHandle.setAttribute("download", "products.csv");
+
+    fileHandle.click();
+    URL.revokeObjectURL(fileHandle.href);
+}
+
 watch(() => props.products, (newProducts) => {
     if (searchString.value.trim().length > 0) {
         searchedProducts.value = newProducts.filter((product) =>
@@ -78,6 +112,7 @@ watch(() => props.products, (newProducts) => {
                 </template>
             </template>
         </ul>
+        <span id="exportCsv" class="w-100 d-flex justify-content-end pt-2"><button class="btn btn-primary">Exporter en CSV</button></span>
     </div>
 </template>
 

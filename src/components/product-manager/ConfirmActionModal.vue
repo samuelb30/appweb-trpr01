@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { watch, ref, onMounted } from 'vue';
-import { Modal } from 'bootstrap/dist/js/bootstrap.bundle.min.js';
+import { Modal } from 'bootstrap';
 
 const props = defineProps<{
     title: string;

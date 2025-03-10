@@ -1,9 +1,8 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue'
-import { type Product } from '../scripts/product';
-import ConfirmActionModal from '../components/ConfirmActionModal.vue'
+import { type Product } from '../../scripts/product';
+import ConfirmActionModal from './ConfirmActionModal.vue'
 import EditProductModal from './EditProductModal.vue';
-
 
 enum Event {
     EDIT,
@@ -35,9 +34,7 @@ function emitProduct() {
     }
 }
 const getBadge = computed(() => {
-    if (props.product.quantity <= 0) {
-
-    } else if (props.product.quantity < 5) {
+    if (props.product.quantity < 5) {
         return "text-bg-danger"
     } else if (props.product.quantity < 10) {
         return "text-bg-warning"
@@ -74,51 +71,42 @@ function getProduct(newProduct: Product) {
     <EditProductModal @accept-response="getProduct" v-model:show="editModalVisible" :product="_product" />
     <li style=" overflow: hidden;" class="list-group-item rounded-4 border-2 m-2 p-0">
 
+        <div class="d-flex justify-content-between">
 
-
-        <button class="d-flex justify-content-between btn btn-light w-100 p-0 pe-2"
-            @click="event = Event.EXPAND; emitProduct()" type="button">
-            <img class="product-img w-25 align-self-start" :src="_product.imageUrl" :alt="_product.name">
-            <div class="container w-75 ps-4 pe-4 pt-2 pb-2">
-                <div class="row">
-                    <div class="d-flex justify-content-between">
-                        <h6 class="align-self-start"><u><b>Nom:</b></u></h6>
-                        <p class="align-self-start"> {{ _product.name }}</p>
-                        <span class="badge" :class="getBadge">{{ _product.quantity }}</span>
-                    </div>
-                </div>
-                <div class="row border border-secondary-subtle border-2 rounded-2">
-                    <p class="pt-1"><u><b>Description</b></u></p>
-                    <p>{{_product.description }}</p>
-                </div>
+            <button class="d-flex justify-content-between btn btn-light w-100 p-0 pe-2"
+                @click="event = Event.EXPAND; emitProduct()" type="button">
+                <img class="product-img-small " :src="_product.imageUrl" :alt="_product.name">
+                <h5 class="align-self-center">{{ _product.name }}</h5>
+                <span class="badge align-self-center" :class="getBadge">{{ _product.quantity }}</span>
+            </button>
+            <div class="d-flex justify-content-around bg-secondary button-group w-25 ">
+                <button @click="displayEdit()"
+                    class="w-100 h-100 btn btn-secondary p-1 border-end rounded-start">
+                    ✏️
+                </button>
+                <button @click="{ event = Event.DUPLICATE; emitProduct() }"
+                    class="w-100 h-100 btn btn-secondary p-1 border-start border-end">
+                    <img src="../../assets/duplication-icon.svg" alt="duplicate" width="25px">
+                </button>
+                <button @click="displayDeleteConfirmation()" class="w-100 h-100 btn btn-secondary p-1 border-start">
+                    ❌
+                </button>
             </div>
-
-        </button>
-
-
-        <div class="d-flex justify-content-around bg-secondary button-group w-100 ">
-            <button @click="displayEdit()"
-                class="w-100 h-100 btn btn-secondary p-1 border-end rounded-start">
-                ✏️
-            </button>
-            <button @click="{ event = Event.DUPLICATE; emitProduct() }"
-                class="w-100 h-100 btn btn-secondary p-1 border-start border-end">
-                <img src="../assets/duplication-icon.svg" alt="duplicate" width="25px">
-            </button>
-            <button @click="displayDeleteConfirmation()" class="w-100 h-100 btn btn-secondary p-1 border-start">
-                ❌
-            </button>
         </div>
-
-
 
     </li>
 </template>
 
-
+<style>
+.badge {
+    height: 25px;
+}
+</style>
 <style scoped>
-.product-img {
-    width: 250px;
+.product-img-small {
+    height: 100%;
+    width: auto;
+    max-height: 40px;
     object-fit: contain;
     overflow: hidden;
 }
