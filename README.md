@@ -12,7 +12,7 @@ Décris ici comment l'IA est utilisée dans ton projet. Précise :
 
 ## 🔗 Liens utiles
 - **GitHub Repository** : https://github.com/samuelb30/appweb-trpr01
-- **Site déployé** : TODO
+- **Site déployé** : https://samuelb30.github.io/appweb-trpr01/
 
 ## 🚀 Installation & Utilisation
 ### 📦 Prérequis
