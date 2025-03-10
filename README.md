@@ -1,7 +1,8 @@
 # 🛒 Nom du Projet
 
 ## 📌 Description du projet
-Une brève description du projet. Explique son objectif, les fonctionnalités principales et la valeur qu'il apporte aux utilisateurs.
+Page de gestion de produits artisanaux fait avec Vite, Vue et TypeScript. Un produit peut être ajouter, modifier, dupliqué et suprimé. La recherche d'un produit par son nom est possible.
+
 
 ## 🤖 Utilisation de l'Intelligence Artificielle (IA)
 Décris ici comment l'IA est utilisée dans ton projet. Précise :
