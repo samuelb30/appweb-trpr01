@@ -1,5 +1,4 @@
-# 🛒 Nom du Projet
-- Gestion d'article artisanaux
+# 🛒 Gestion d'article artisanaux
 ## 📌 Description du projet
 Page de gestion de produits artisanaux fait avec Vite, Vue et TypeScript. Un produit peut être ajouter, modifier, dupliqué et suprimé. La recherche d'un produit par son nom est possible.
 
